@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><%= page_title %></title>
+<%=javascript_include_tag 'jquery', 'lib/visuals' %>
+<%= stylesheet_link_tag 'base', 'layout', 'style','interface' %>
+<!--[if IE 6]>
+<%=stylesheet_link_tag 'png_fix.css' %>
+<![endif]-->
+
+<script language="javascript"> AC_FL_RunContent = 1; </script>
+<script language="javascript"> DetectFlashVer = 1; </script>
+<script src="/AC_RunActiveContent.js" language="javascript"></script>
+<script language="JavaScript" type="text/javascript">
+var requiredMajorVersion = 9;
+var requiredMinorVersion = 0;
+var requiredRevision = 24;
+</script>
+
+
+</head>
+<body>
+
+<script language="JavaScript" type="text/javascript">
+
+	var hasRightVersion = DetectFlashVer(requiredMajorVersion, requiredMinorVersion, requiredRevision);
+	if(hasRightVersion) {  // if we've detected an acceptable version
+		// embed the flash movie
+		AC_FL_RunContent(
+			'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,24,0',
+			'width', '2',
+			'height', '2',
+			'src', '/jqUploader',
+			'quality', 'high',
+			'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
+			'align', 'middle',
+			'scale', 'showall',
+			'wmode', 'window',
+			'devicefont', 'true',
+			'id', 'jqUploader',
+			'name', 'jqUploader',
+			'menu', 'true',
+			'allowScriptAccess','always',
+			'allowFullScreen','false',
+			'movie', '/jqUploader',
+			'salign', ''
+			); //end AC code
+	} else {
+	  	$('form.pseudoform').hide();
+			var alternateContent = '<div class=\'modal\'><div>It looks as though you don\'t have the necessary version of Macromedia Flash Player installed ('+ requiredMajorVersion+ '.' + requiredMinorVersion+') to use our photo uploading utility.  You can download the newest version <a href=\'http://www.macromedia.com/go/getflashplayer\'>here</a>.</div></div>';
+		  document.write(alternateContent);
+	}
+
+</script>
+
+  
+<!--
+<div class='overlay'>
+    <div class='progress'>
+      <div class='memo'>Remember, It's always best to upload higher resolution photos</div>
+      <h2>Uploading Images</h2>
+      <div class='percent'> 78% </div>
+      <h3>
+        <span>filenameas_asa.jpg</span> is uploading
+        </h3>
+      <div id="progress_meter">
+        <div id="progress_bar"></div>
+      </div>
+    </div>
+  </div> 
+-->
+
+<div class='container'>
+<%#= session.inspect %>
+  <div class='header'>
+  	  <%= logo %>
+  	  <div class='cart nav'><%= cart_nav%></div>
+  		<div class='main nav'><%=main_nav %></div>
+  </div>
+
+  <div class='content'>
+
+    <div class="intro">
+      <h2>Frame it your way</h2>
+      <p>
+      At Frame Builder pictures become more than snapshots.  Anyone can create a work of art with our printing 
+      and custom framing engine.
+      </p>
+      <form class='pseudoform'>
+      <h3>Upload a Large Image From Your Computer</h3>
+        <input type='text' id="filename" size=15>
+        <input type='button' id="browse" value='Browse'>
+        <input type='button' id="upload" class='submit' value='Upload'>
+    </form>
+     <div class='demo'>Not ready to get started?&nbsp;&nbsp;Check out a <%=link_to "demo", demo_path %>.</div>
+  </div>
+    <div class='sample_photo'></div>
+    </div>
+  
+  </div>
+
+  
+</div>
+<%= upload_scripts %>
+<img src='images/loading.gif' class='cache'/>
+<%= footer %>
+</body>
+</html>

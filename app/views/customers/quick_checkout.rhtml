@@ -1,0 +1,30 @@
+<form method="POST" action=<%= url_for :controller=>"customers", :action=>"quick_checkout" %>>
+
+<div class="major customer">
+<h2>Shipping info</h2>
+<div class='field'><label>email</label><%= text_field :customer, :email %></div>
+<div class='field'><label>First Name</label><%=  text_field :customer, :first_name %></div>
+<div class='field'><label>Last Name</label><%=  text_field :customer, :last_name %></div>
+<div class='field'><label>Address 1</label><%=  text_field :customer, :address_1 %></div>
+<div class='field'><label>Address 2</label><%=  text_field :customer, :address_2 %></div>
+<div class='field'><label>City</label><%=  text_field :customer,:city %></div>
+<div class='field'><label>State</label><%= select :customer, :state, STATES.sort,  {:include_blank => true }%></div>
+<div class='field'><label>ZIP</label><%=  text_field :customer, :zip %></div>
+</div>
+
+<div class="major credit_card">
+<h2>Billing info</h2>
+<div id="copy_address">Same as Shipping</div>
+<div class='field'><label>Card Number</label><%=  text_field :credit_card, :number %></div>
+<div class='field'><label>Verification Number <a href="#">(?)</a></label><%= text_field :credit_card,  :verification, :class=>"verification" %></div>
+<div class='field'><label>Expiration Date <span>(ex. 02/2009)</span></label><input type='text' class='date' name='expiry_month'/> / <input type='text' class='date' name='expiry_year'/></div>
+<div class='field'><label>First Name of Cardholder</label><%= text_field :credit_card, :first_name %></div>
+<div class='field'><label>Last Name</label><%=text_field :credit_card, :last_name %></div>
+<div class='field'><label>Address 1</label><%= text_field :credit_card, :address_1 %></div>
+<div class='field'><label>Address 2</label><%= text_field :credit_card,  :address_2 %></div>
+<div class='field'><label>City</label><%= text_field :credit_card,  :city %></div>
+<div class='field'><label>State</label><%= select :credit_card, :state, STATES.sort,  {:include_blank => true }%></div>
+<div class='field'><label>ZIP</label><%= text_field :credit_card, :zip, :class=>'zip' %></div>
+</div>
+<input type="submit" value="submit"/>
+</form>

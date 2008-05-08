@@ -1,0 +1,31 @@
+html do
+ head do
+
+   title page_title
+   stylesheet_link_tag 'base', 'layout', 'style', 'static'
+   #png_fix
+   #js_set_versions(@photo)
+   #js_order_info(@photo.order)
+   javascript_include_tag  'jquery', 'lib/visuals'
+  
+   #farbtastic
+   
+ 
+ end
+
+ body(:class=>(["c_"+params[:controller],"a_"+params[:action],"f_"+File.basename(@page).split(".")[0]].join(" ")), :id=>["p",params[:id]].join("_")) do
+
+	div.container do
+		div.header do
+			self << logo
+			div.nav.cart{ self << cart_nav }
+			div.nav{ self << main_nav }
+		end
+
+  	div.content{ self << content_for_layout}
+
+
+	end
+			self << footer
+ end
+end

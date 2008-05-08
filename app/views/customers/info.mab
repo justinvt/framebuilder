@@ -1,0 +1,2 @@
+h1 "Mailing Address"
+render :partial=>"address"

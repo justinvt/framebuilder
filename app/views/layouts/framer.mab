@@ -1,0 +1,76 @@
+doctype
+html do
+ head do
+
+   title page_title
+   stylesheet_link_tag 'base', 'layout', 'style','interface'
+   	
+   self << "<!--[if IE 6]>"
+   stylesheet_link_tag 'png_fix.css'
+   self << "<![endif]-->"
+   
+   js_set_versions(session[:order].photo)
+   js_order_info(session[:order])
+   javascript_include_tag  'jquery'
+   farbtastic
+   javascript_include_tag  'framer', 'lib/cookies', 'lib/color', 'lib/visuals', 'lib/tooltips'
+ 
+ end
+
+ body("class"=>("c_"+params[:controller]+" "+"a_"+params[:action])) do
+   div.page_loading!{
+     div{
+       span "Loading Interface"
+       image_tag "loading.gif"
+       }
+   }
+  #div{
+  #  div {params.to_json}
+  #  div {session[:order].to_json}
+  #  div {session[:working_id].inspect}
+  #  div {Order.find(session[:working_id]).to_json}
+  #}
+	div.container("style"=>"width:#{Size.max_dimension+340}px") do
+		div.header do
+			self << logo
+			div.nav.cart{ self << cart_nav }
+			div.nav{ self << main_nav }
+		end
+   		div.content do
+   		  div.canvas_selector.options.framed!{
+    		    div.option.framed.canvas!{
+    		        label "Just Canvas"
+    		        input("type"=>"radio","name"=>"frame[canvas]", "value"=>1)
+    		    }
+    		    div.option.framed.no_canvas!{
+    		      label  "Framed"
+    		      input("type"=>"radio","name"=>"frame[canvas]", "value"=>0)
+    		    }
+    		  }
+    		div.editor{
+    		  
+    			div.cropper("style"=>("background-image:url('#{session[:order].photo.url}');width: #{session[:order].photo.width}px;height: #{session[:order].photo.height}px")){
+    				"&nbsp;"
+    				
+    			 	image_tag session[:order].photo.url
+    				div.control.hide_tools!{"hide tools"}
+    				div.control.rotate_frame!{"rotate frame"}
+    				}
+   
+    			div.menu{ |variable|  
+    	 		  div.tabs{tabs}
+    			  self << content_for_layout
+    			  self << color_map( session[:order].photo) 
+    			 # div.bottom
+    			# br.cleaner
+    			}
+    			 br.cleaner
+    		}
+    		 br.cleaner
+
+		end
+	
+	end
+		self << footer
+ end
+end

@@ -1,0 +1,8 @@
+div{
+  h1 "Credit Cards"
+  unless @customer.credit_cards.blank?
+    select_card_form(@customer)
+  else
+    link_to "Add a Credit Card", :controller=>"credit_cards", :action=>"new"
+  end
+}

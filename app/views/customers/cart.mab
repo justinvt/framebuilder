@@ -1,0 +1,8 @@
+div{
+  h1  self.current_user.login
+  if  self.current_user.customer.unpaid.blank?
+    h2 "Your cart is empty."
+  else
+    self << order_form(@customer.unpaid)
+  end
+}

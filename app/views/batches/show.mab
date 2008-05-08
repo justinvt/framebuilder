@@ -1,0 +1,21 @@
+div.batch{
+  h1 "Batch " + @batch.id.to_s
+  h2 "Generated " + @batch.created_at.strftime("%m/%d/%y") unless @batch.created_at.nil?
+  if File.exist?(@batch.path.to_s)
+    (link_to "download", :action=>"download", :id=>@batch.id) 
+  else
+    span "We couldn't locate the source file for this batch."
+  end
+  h2 "Orders included in this batch"
+  if @batch.orders.blank?
+    div "No orders belong to this batch."
+  else
+  @batch.orders.each do |o|
+    div.order{
+      h4 "Order " + o.id.to_s 
+      image_tag o.preview_url
+    }
+  end
+  end
+  
+}

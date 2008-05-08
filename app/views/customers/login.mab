@@ -1,0 +1,11 @@
+div.login.existing!{  
+  h1 "Returning user?"
+  self << (render  "session/new.rhtml") 
+  }
+
+div.login.new!{  
+  h1 "I'm new here."
+  self << (render  "users/new.rhtml") 
+  }
+  div.or {"or"}
+br.cleaner

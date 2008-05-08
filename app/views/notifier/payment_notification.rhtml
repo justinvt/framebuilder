@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Payment Sent</title>
+	<!-- Date: 2008-04-14 -->
+</head>
+<body>
+<p><%= @payment.customer.title %>,</p>
+<p>Your credit card ending in <%=@payment.credit_card.number[-4..-1] %> has been charged $<%=number_to_currenct(@payment.amount %>)
+ for the following items....</p>
+<p>
+If you have any questions regarding this charge, or general inquiries about your order please do not reply to this emai, but instead send a message to <a href=mailto:service@framebuilder.com>service@framebuilder.com</a>.
+Thanks so much for using the coolest canvas printing site in the universe!</p>
+
+<p>Framebuilder</p>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+class GlazingsController < ApplicationController
+end

@@ -1,0 +1,4 @@
+h1 {params[:scope].blank? ? "All Orders (past & present)" : params[:scope].capitalize + " Orders"}
+@orders.each{|o|
+  self << customer_order(o)
+}

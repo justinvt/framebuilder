@@ -1,0 +1,9 @@
+div{
+  h1 "New Billing Method"
+  form{
+    div.field{
+      label "type"
+    }
+    input(:type=>"submit")
+  }
+}

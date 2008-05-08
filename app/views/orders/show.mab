@@ -1,0 +1,50 @@
+div.order{
+  h1.title order.title
+  h2.price number_to_currency(order.price)
+  h2.date("Placed " + order.created_at.strftime("%m/%d/%Y"))
+  h2.date("Expected Delivery " + (order.due_date).strftime("%m/%d/%Y"))
+  if order.due_date > Time.now
+    h2.due.date.on_time ("Due in " + distance_of_time_in_words_to_now(order.due_date))
+  else
+    h2.due.date.late{
+     self <<  ("&iexcl; Due " + distance_of_time_in_words_to_now(order.due_date) + " ago !")
+    }
+  end
+  self << customer(@order.customer)
+  div.thumb{
+   thumbnail(order)
+  }
+  div.size{
+    h2 "size"
+    span order.size.title
+  }
+  div.frame{
+    h2 "frame"
+    span order.frame.name
+    span "(# #{order.frame.id})"
+  }
+
+  div.identifier{
+    self << barcode(order)
+    span  order.id.to_s
+  }
+  
+  div.bom{
+    h2 "Bill of Materials (at an estimated #{(order.class.waste * 100).to_s}% waste)"
+    div{
+      h3{ 
+      self << (order.frame.name + " framing")
+      span "(# #{order.frame.id})"
+      }
+      span order.estimated_framing(:inches).to_s + "\""
+    }
+    div{
+      h3"canvas"
+      span order.estimated_canvas(:inches).to_s + " square inches"
+      span {
+        "(" + order.size.dimensions(:inches).collect{|d| ((d+(2*order.frame.x_stretcher))*(1+order.class.waste)).to_s+ "\""}.join(" x ") + ")"
+        }
+    }
+    
+  }
+}

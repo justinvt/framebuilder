@@ -1,0 +1,26 @@
+html do
+ head do
+   title page_title
+   stylesheet_link_tag  'base',  'admin'
+   png_fix
+   javascript_include_tag 'jquery', 'admin'
+ end
+ 
+ body do
+   div.header{
+      div.nav{
+        self << (link_to "sizes", :controller=>"sizes")
+        self << (link_to "frames", :controller=>"frames")
+        self << (link_to "batch printing", :controller=>"batches")
+        self << (link_to "settings", :controller=>"admin", :action=>"settings")
+      }
+      self << user_info
+  }
+   div.container{
+     div.notice flash[:notice] unless flash[:notice].blank?
+     div.warning flash[:warning] unless flash[:warning].blank?
+     self << content_for_layout
+  }
+ end
+ 
+end

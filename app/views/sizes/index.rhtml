@@ -1,0 +1,10 @@
+<div class='sizes'>
+<h1>Sizes</h1>
+<div class='menu'>
+<%= link_to "New", :controller=>'sizes', :action=>'new' %>
+<%= link_to "Update Demos (?)",{:controller=>'sizes', :action=>'update_demos'}, :confirm=>"This will probably take 1-2 minutes.  Is that ok?" %>
+</div>
+<% @sizes.each do |s| -%>
+<%= size(s) -%>
+<% end -%>
+</div>

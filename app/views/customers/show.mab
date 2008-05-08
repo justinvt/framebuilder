@@ -1,0 +1,12 @@
+div{
+  h1 @customer.user.login
+    div.cart{
+      h2 {"You have " + link_to (pluralize(@customer.unpaid.size, "item"),:controller=>'customers' ,:action=>"cart") + " in your cart."}
+    }
+    div.cart{
+      h2 {"You have been shipped " + link_to (pluralize(@customer.shipped.size, "item"),:controller=>'orders', :action=>"index", :scope=>"shipped") + "."}
+    }
+    div.cart{
+      h2 {"We are processing " + link_to (pluralize(@customer.paid.size, "item"),:controller=>'orders', :action=>"index", :scope=>"paid")+ "."}
+    }
+}

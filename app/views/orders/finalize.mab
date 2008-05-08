@@ -1,0 +1,50 @@
+h2 "3. Finalize"
+form.order_info{
+  
+}
+form.size!(:action=>"/customers/login",:method=>"post"){
+  unless session[:order].ready
+    "You have some more pickin to do"
+  else
+  div.order{
+   
+    div.size{
+      h4 "Size"
+      span session[:order].size.title(:inches)
+    }
+   
+    div.frame{
+      h4 "Frame"
+      span session[:order].frame.name.titleize
+    }
+    
+    div.quantity{
+      div.field.no!{
+        label "Quantity"
+        input.quantity!("value"=>1, "name"=>"frame[quantity]")
+        }
+      div.field.unit_price!{
+        label "Price $"
+        span.price! "#{number_to_currency(session[:order].price).gsub("$","")}"
+      } 
+    }
+    br.cleaner
+  
+    div.price{
+      h4 "Total"
+      span.total.total! number_to_currency(session[:order].price).to_s
+      span " + Shipping & Handling"
+    }
+    self << hidden_values
+   # link_to "Let's Do Another", {:controller=>"orders", :action=>"new"}, :class=>"pseudobutton", :id=>"do_another"
+    unless session[:order].photo.demo
+      self << accept_terms
+      input(:type=>'button',:value=>"Let's Do Another", :id=>"do_another", :class=>"submit")
+      input(:type=>'button',:value=>"I'm done", :id=>"im_done", :class=>"submit")
+    else
+      input(:type=>'button',:value=>"End of demo",  :class=>"submit")
+    end
+    br.cleaner
+  }
+  end
+}

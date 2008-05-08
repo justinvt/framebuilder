@@ -1,0 +1,14 @@
+div.demo_photos{
+  h1 "Pick a demo photo"
+  form{
+    Photo.possible_demos.each do |p|
+       css_class= ["photo"]
+      css_class << "demo"     if p.demo
+      div(:class=>css_class.join(" "),:id=>["photo",p.id.to_s].join("_")){
+        input(:type=>"radio", :name=>"demo")
+        image_tag(p.thumb_url, :width=>100)
+      }
+    end
+    submit_tag "set"
+  }
+}

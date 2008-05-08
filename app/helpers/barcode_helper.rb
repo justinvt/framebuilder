@@ -1,0 +1,2 @@
+module BarcodeHelper
+end

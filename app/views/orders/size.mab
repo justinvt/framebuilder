@@ -1,0 +1,34 @@
+h2 "1. Pick a Size"
+form.order_info(:action=>"/orders/kind",:method=>"post"){
+div.options.size!{
+  Size.find(:all).sort{|a,b| (a.area)<=>(b.area)}.each{ |s|
+  css_append = session[:order].size == s ? "current" : nil
+  if session[:order].photo.possible_sizes.include?(s)
+	  div.size.option{
+		  input("id"=>s.css_id,"type"=>"radio","name"=>"frame[size]", "value"=>s.id)
+		  label("class"=>css_append) {
+		     span{
+		      span.name s.name
+		      span.dimensions "("+s.title("inches")+")"
+	      }
+	    }
+		}
+	else
+	   div.size.option.inadvisable{
+		  input("id"=>s.css_id,"type"=>"radio","name"=>"frame[size]", "value"=>s.id)
+		  label("class"=>css_append) {
+		    span{
+		      span.name s.name
+		      span.dimensions "("+s.title("inches")+")"
+	      }
+		    span "(not recommended)"
+		    self << tooltip("<p>Choosing a frame this size will require us to stretch your image beyond it's original dimensions, which will likely distort your picture or make it appear pixelated.</p><p>You can either upload the same image at a higher resolution, or proceed at your own risk :)</p>")
+		  }
+		}
+	end
+  }
+  input.canvas_top("type"=>"hidden", "name"=>"frame[frame_id]", "id"=>"canvas_option")
+  self << hidden_values
+  submit_tag "Pick", :class=>"submit"
+}
+}

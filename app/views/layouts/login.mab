@@ -1,0 +1,38 @@
+html do
+ 
+ head do
+   title page_title
+   stylesheet_link_tag  'base',  'customer', 'login'
+   png_fix
+   page_specific_stylesheets
+   javascript_include_tag 'jquery','customer','credit_card', 'lib/visuals'
+ end
+ 
+ body(page_params) do
+
+   #div{
+  # div session[:goal].inspect
+   #  div params.inspect
+   #}
+   div.header{
+     self << logo
+     if logged_in?
+      div.nav{
+        link_to_unless_current("Home",{:controller=> "customers" , :action=>"index"}){|n| content_tag :span, n}
+        link_to_unless_current("Billing Info",{:controller=> "credit_cards" , :action=>"index"}){|n| content_tag :span, n}
+        link_to_unless_current("Personal Info",{:controller=>"customers", :action=>"info"}){|n| content_tag :span, n}
+        link_to_unless_current("Your Cart",{:controller=> "customers", :action=>"cart"}){|n| content_tag :span, n}
+        link_to_unless_current("Help",{:controller=> "pages", :id=>"contact"}){|n| content_tag :span, n}
+        self << trashcan(self.current_user.customer) unless self.current_user.customer.nil?
+      }
+      div{ self << user_info } 
+    end
+    }
+  div.container{
+    self << messages
+    self << content_for_layout
+  }
+  self << footer
+ end
+ 
+end

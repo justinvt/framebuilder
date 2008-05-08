@@ -1,0 +1,16 @@
+if Order.all_paid.blank?
+  h2 "There are currently no unprinted orders."
+else
+  h2 "There are #{ Order.all_paid.size} orders ready for printing"
+  h3 {link_to "Create new batch", :action=>:new}
+end
+div.existing.batches{
+    h2 "Past Batches"
+    @batches.each{|b|
+    div.batch {
+      link_to "Batch " + b.id.to_s, {:action=>:show, :id=>b.id}
+      span b.created_at.strftime("%m/%d/%y") unless b.created_at.blank?
+      link_to "(download)", {:action=>:download, :id=>b.id}, :class=>'download'
+    }
+  }
+}

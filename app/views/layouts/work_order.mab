@@ -1,0 +1,36 @@
+self << doctype
+html do
+ 
+ head do
+   title "hey"
+   #stylesheet_link_tag  'base',  'work_order', :media=>"all"
+   #stylesheet_link_tag  'print/work_order', :media=>"print"
+   style{
+      %{
+      body{font-family: "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Helvetica, Arial, Verdana, sans-serif;;font-size:0.8em;}
+      .title {margin-bottom:0.3em;font-size:3em;width:60%;}
+      .order {width:760px;margin:auto;background:#fff;position:relative;}
+      .customer,.bom {padding:1em 0;margin:1em 0;border-top:solid 1px #666;}
+      .bom h3{font-weight:bold;margin-top:0.5em;}
+      .identifier{font-family:"Arial";position:absolute;top:0;right:0;width:37%;}
+      .identifier span{font-size:6.5em;}
+      .identifier *{display:block;float:right;}
+      .identifier img{margin:0 30px}
+      .date{color:#444;font-size:1em;}
+      .due{font-size:1.5em;}
+      .on_time{color:#339944;}
+      .late{color:#993333;}
+      .price{font-size:2.6em;margin-bottom:0.2em;color:#999}
+      .thumb{float:right}
+      .size, .frame{padding:1em 0}
+      .address .name{font-weight:bold;font-size:1.2em;}
+      .address{margin-bottom:1em;}
+    }
+   }
+ end
+ 
+ body do
+    self << content_for_layout
+ end
+ 
+end

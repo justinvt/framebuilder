@@ -1,0 +1,27 @@
+h2 "3. Finalize"
+form.size!(:action=>"/frames/kind",:method=>"post"){
+  unless session[:order].ready
+    "You have some more pickin to do"
+  else
+  div.order{
+   
+    div.size{
+      h4 "Size"
+      span session[:order].size.title(:inches)
+    }
+   
+    div.frame{
+      h4 "Frame"
+      span session[:order].frame.name.titleize
+    }
+  
+    div.price{
+      h4 "Total"
+      span.total "$"+session[:order].price.to_s
+      span " + Shipping &amp; Handling "
+    }
+    
+    submit_tag "Check Out &raquo;", :class=>"submit"
+  }
+  end
+}

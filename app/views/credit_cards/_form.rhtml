@@ -1,0 +1,18 @@
+<% form_for @credit_card do |cc| %>
+<% if @credit_card.id.blank? %>
+<div class='field'><label>Card Number</label><%= cc.text_field :number %></div>
+<div class='field'><label>Verification Number <a href="#">(?)</a></label><%= cc.text_field :verification, :class=>"verification" %></div>
+<div class='field'><label>Expiration Date <span>(ex. 02/2009)</span></label><input type='text' class='date' name='expiry_month'/> / <input type='text' class='date' name='expiry_year'/></div>
+
+<% else %>
+<div class='field' id='number'><label>Card Number</label<h3><%=@credit_card.obscured_number%></h3></div>
+<% end %>
+<div class='field'><label>First Name of Cardholder</label><%= cc.text_field :first_name %></div>
+<div class='field'><label>Last Name</label><%= cc.text_field :last_name %></div>
+<div class='field'><label>Address 1</label><%= cc.text_field :address_1 %></div>
+<div class='field'><label>Address 2</label><%= cc.text_field :address_2 %></div>
+<div class='field'><label>City</label><%= cc.text_field :city %></div>
+<div class='field'><label>State</label><%= select :credit_card, :state, STATES.sort,  {:include_blank => true }%></div>
+<div class='field'><label>ZIP</label><%= cc.text_field :zip, :class=>'zip' %></div>
+<%=submit_tag 'Save', :class=>"submit"%>
+<% end %>

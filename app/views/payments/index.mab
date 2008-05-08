@@ -1,0 +1,5 @@
+div.payments{
+  @payments.each{|p|
+   self << payment(p)
+  }
+}

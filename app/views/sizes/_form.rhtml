@@ -1,0 +1,38 @@
+<%= flash[:notice] %>
+<%= flash[:warning] %>
+<% form_for  @size do |s| -%>
+<% if @size.id %>
+<h2>Edit Size <%= @size.id %> (<%= @size.title(:inches) %>)</h2>
+<% else %>
+<h2>New Size</h2>
+<% end %>
+  
+<div class="field">
+<label for="width">Width (in.)</label>
+<%= s.text_field :width %>
+</div>
+
+<div class="field">
+<label for="width">Height (in.)</label>
+<%= s.text_field :height %>
+</div>
+
+<div class="field">
+<label for="height">Name</label>
+<%= s.text_field :name %>
+</div>
+
+<div class="field">
+<label for="price">Price</label>
+<%= s.text_field :price %>
+</div>
+
+<div class="field">
+<label for="price">Approximate Weight (lbs.)</label>
+<%= s.text_field :weight %>
+</div>
+
+<%= s.hidden_field :units, :value=>"inches" %>
+
+<%= submit_tag 'Save' %>
+<% end -%>

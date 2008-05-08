@@ -1,0 +1,5 @@
+<%= form_tag_with_upload_progress({ :action => 'upload' }) %>
+    <%= file_field "photo", "file" %>
+    <%= submit_tag "Upload" %>
+    <%= upload_status_tag %>
+</form>

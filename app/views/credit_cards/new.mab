@@ -1,0 +1,3 @@
+h1{"Card Info"}
+div.pseudolink.same_as_mailing!{ "Use Same Address as Mailing Info"}
+render :partial=>"form"

@@ -1,0 +1,5 @@
+div{
+  h1 "Billing Information"
+  link_to "Add New Payment Method", :controller=>"payment_methods", :action=>"new"
+  @customer.payment_methods.each {|p| link_to p.name, :action=>"payment_method"} unless @customer.payment_methods.blank?
+}

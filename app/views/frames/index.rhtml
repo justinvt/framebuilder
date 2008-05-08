@@ -1,0 +1,10 @@
+<div class='frames'>
+<h1>Frames</h1>
+<div class='menu'>
+<%= link_to "New", :controller=>'frames', :action=>'new' %>
+<%= link_to "Regenerate All", {:controller=>'frames', :action=>'regenerate_all'}, :confirm=>"This will probably take a minute or so.  Is that ok?" %>
+</div>
+<% @frames.each do |f| -%>
+<%= frame(f) -%>
+<% end -%>
+</div>

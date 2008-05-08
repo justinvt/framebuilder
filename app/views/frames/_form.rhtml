@@ -1,0 +1,80 @@
+<% form_for( @frame, :html => {:multipart => true, :class=>"form frame"}) do |f| -%>
+<% if @frame.id %>
+<h2>Edit Frame <%= @frame.id %> (<%= @frame.name %>)</h2>
+<% else %>
+<h2>New Frame</h2>
+<% end %>
+<%= error_messages_for 'frame' %>
+
+<div class="field">
+<label for="name">Name <span>(will be extracted from filename if blank)</span></label>
+<%= f.text_field :name %>
+</div>
+
+<div class="field">
+<label for="width">Thickness (in.)</label>
+<%= f.text_field :thickness %>
+</div>
+<!--
+<div class="field">
+<label for="height">Depth (in.)</label>
+<%= f.text_field :depth %>
+</div>
+-->
+<div class="field">
+<label for="height">Stretcher Size (in.)</label>
+<%= f.text_field :x_stretcher %>
+</div>
+
+<div class="field">
+<label for="price_per_inch">Price per inch.</label>
+<%= f.text_field :price_per_inch %>
+</div>
+
+<div class="field">
+<label>Floating</label>
+<%= f.check_box :floating %>
+</div>
+
+<% unless @frame.image.nil? %>
+<% if File.exist?(@frame.image_path)%>
+<div class="field">
+<label>Current Frame</label>
+<%= image_tag @frame.image.as_url %>
+</div>
+<% else %>
+<div class='error'>
+The image path appears to be broken
+</div>
+<%end %>
+<%end %>
+
+<div class='field'>
+<label>image (default orientation is from the top of frame)</label>
+<%= file_field :image, :file %>
+<%#= text_field :image, :preprocess %>
+</div>
+
+<% unless @frame.corner_shot.nil? %>
+<% if File.exist?(@frame.corner_shot_path)%>
+<div class="field">
+<label>Corner Shot</label>
+<%= image_tag @frame.corner_shot.as_url %>
+</div>
+<% else %>
+<div class='error'>
+The image path appears to be broken
+</div>
+<%end %>
+<%end %>
+
+<div class='field'>
+<label>Corner Shot</label>
+<%= file_field :image, :corner_shot %>
+<%#= text_field :image, :preprocess %>
+</div>
+
+
+
+<%= submit_tag 'Save' %>
+<% end -%>

@@ -1,0 +1,14 @@
+<%= error_messages_for :user %>
+<% form_for :user, :url=>url_for(@user), :html=>{:class=>"login"} do |f| -%>
+
+<div class='field'><label for="email">Email</label>
+<%= f.text_field :email %></div>
+
+<div class='field'><label for="password">Password</label>
+<%= f.password_field :password %></div>
+
+<div class='field'><label for="password_confirmation">Confirm Password</label>
+<%= f.password_field :password_confirmation %></div>
+
+<%= submit_tag 'Sign up', :class=>"submit" %>
+<% end -%>

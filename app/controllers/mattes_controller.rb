@@ -1,0 +1,2 @@
+class MattesController < ApplicationController
+end

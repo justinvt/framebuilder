@@ -1,0 +1,48 @@
+h2 "2. Pick a Frame"
+form.order_info(:action=>"/orders/finalize",:method=>"post"){
+div.options.kind!{
+
+div("id"=>"floating"){
+	h3 {
+	   div.icon{}
+	   p.title "Floating"
+	   p{
+	     self << "Floating frames have a gap between the canvas edge and the frame itself."
+	     }
+	   br.cleaner
+	  }
+	Frame.floating.each{|f|
+	  self << frame(f)
+	}
+}
+div("id"=>"non_floating"){
+  h3 {
+     div.icon{}
+	   p.title "Non-floating"
+	   p{ 
+	     self << "Non-floating frames are the standard type of frame."
+	     }
+	   br.cleaner
+   }
+	Frame.non_floating.each{|f|
+	  self << frame(f)
+	}
+}
+div("id"=>"just_canvas"){
+  h3 {
+    div.icon {}
+	   p.title "Just Canvas"
+	   p{ 
+	     self << "Just canvas with no frame."
+	        }
+	     }
+	   br.cleaner
+   }
+   div.canvas_option{
+     self << frame(Frame.canvas)
+   }
+self << hidden_values
+submit_tag "Pick", :class=>"submit"
+}
+
+}

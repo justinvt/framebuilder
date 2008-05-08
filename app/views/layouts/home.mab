@@ -1,0 +1,14 @@
+html do
+  
+ head do
+   title "Framebuilder.com"  
+   javascript_include_tag 'jquery'
+   upload_scripts
+   png_fix
+ end
+
+ body do
+		self << content_for_layout
+ end
+  
+end

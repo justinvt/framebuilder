@@ -1,0 +1,13 @@
+div.editor{
+	div.cropper{
+		image_tag @photo.path.gsub("/Users/justin/dev/ruby/ror/svn/ace/trunk/public/images/",'')
+	}
+	div.menu{
+		h2 "pick a size"
+		@photo.possible_sizes.each { |s|
+			div.size{
+				s.title("inches")
+			}
+		}
+	}
+}

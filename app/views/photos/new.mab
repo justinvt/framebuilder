@@ -1,0 +1,21 @@
+div.intro{
+ /# div.overlay{
+    div.progress{
+      div.memo "Remember, It's always best to upload higher resolution photos"
+      h2 "Uploading Images"
+      div.percent "78%"
+      h3{
+        span{"filenameas_asasasa_asassdsdsdsdsasa.jpg"}
+        self << " is uploading"
+        }
+      div.progress_meter!{
+        div.progres_bar!{}
+      }
+    }
+  }#/
+  
+	h2 "Frame it your way"
+	p "At frame builder your photos ...."
+	self << (render :partial=>"form")
+
+}

@@ -1,0 +1,2 @@
+h1{"Change Card Info"}
+render :partial=>"form"
